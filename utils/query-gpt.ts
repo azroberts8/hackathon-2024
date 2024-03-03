@@ -35,7 +35,7 @@ const GPTQuery = async ({ systemPrompt, userInput, settings = {
       ]
     })
   }).then(res => res.json())
-    return GPTResponse.choices[0].message.content;
+  return GPTResponse.choices[0].message.content;
 }
 
 export { GPTQuery }
