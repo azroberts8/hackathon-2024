@@ -3,10 +3,11 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { ListItem, ListItemInterface } from "./ListItem.tsx";
 
 export interface InvestmentListInterface {
+    title: string;
     companies: Array<ListItemInterface>;
 }
 
-export default function InvestmentList({ companies }: InvestmentListInterface) {
+export default function InvestmentList({ title, companies }: InvestmentListInterface) {
     return (
         <div class="">
             { companies.map(company => (

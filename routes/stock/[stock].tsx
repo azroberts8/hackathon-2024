@@ -6,6 +6,7 @@ import { StockPriceQuery, StockDeepQuery, DeepStockResponse } from "../../utils/
 import RecommendedStocks from "../../components/RecommendedStocks.tsx";
 import { GPTQuery } from "../../utils/query-gpt.ts";
 import InvestmentList from "../../components/InvestmentList.tsx";
+import { PropertySignature } from "https://deno.land/x/ts_morph@17.0.1/ts_morph.js";
 
 export const handler: Handlers<{ prices: Array<number>; deepQuery: DeepStockResponse; insight: string }> = {
   async GET(_req, ctx) {
@@ -54,19 +55,46 @@ export const handler: Handlers<{ prices: Array<number>; deepQuery: DeepStockResp
 
 };
 
-export default function Stock(props: PageProps) {
+export default function Stock({ params, data }: PageProps) {
   return (
-    <div >
-      <NavigationBar/>
-      <div class=" mx-auto flex flex-col ">
-        {/* {console.log("PAGEPROPS -> " + props)} */}
-        { StockBio(props.params.stock, props.data.deepQuery.companyName, props.data.deepQuery.description)}
+    <div>
+      <NavigationBar />
+      <div class="grid grid-cols-2">
+        <div class="col-span-2">
+          { StockBio(params.stock, data.deepQuery.companyName, data.deepQuery.description) }
+        </div>
+        <div class="overflow-hidden m-8">
+          { ChartComponent(data.prices) }
+        </div>
+        <div class="overflow-hidden m-8">
+          <InvestmentList title="Similar Recommendations" companies={ data.recommendations } />
+        </div>
+        <div class="col-span-2 w-full px-12 pt-8 pb-12" style="background-image:linear-gradient(rgba(0, 0, 40, 0.8),rgba(0, 0, 40, 0.8)), url('/gallery/hero-bg.webp');">
+          <div class="text-4xl font-bold text-white mb-3">{ data.deepQuery.companyName } Investment Insights</div>
+          <div class="text-lg text-blue-100">
+            { data.insight }
+          </div>
+        </div>
       </div>
-      { ChartComponent(props.data.prices)}
-      <div>GPT: { props.data.insight }</div>
-      { console.log(props.data.recommendations) }
-      <InvestmentList companies={ props.data.recommendations } />
-      {/* <div>Recs: { props.data.recommendations }</div> */}
+      
     </div>
-  ); 
+  );
 }
+
+
+// export default function Stock(props: PageProps) {
+//   return (
+//     <div >
+//       <NavigationBar/>
+//       <div class=" mx-auto flex flex-col ">
+//         {/* {console.log("PAGEPROPS -> " + props)} */}
+//         { StockBio(props.params.stock, props.data.deepQuery.companyName, props.data.deepQuery.description)}
+//       </div>
+//       { ChartComponent(props.data.prices)}
+//       <div>GPT: { props.data.insight }</div>
+//       { console.log(props.data.recommendations) }
+//       <InvestmentList companies={ props.data.recommendations } />
+//       {/* <div>Recs: { props.data.recommendations }</div> */}
+//     </div>
+//   ); 
+// }
