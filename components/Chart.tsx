@@ -3,29 +3,29 @@ import { Chart } from "https://deno.land/x/fresh_charts@0.3.1/mod.ts";
 import { ChartColors, transparentize } from "https://deno.land/x/fresh_charts@0.3.1/utils.ts";
 import { StockPriceQuery } from "../utils/query-stock.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { FULL } from "$std/semver/_shared.ts";
 
 export function ChartComponent(data: number[]) {
   console.log(data);
   
   return (
     <div>
-      <h1>Title</h1>
-
       <Head>
         <title>Example Chart</title>
       </Head>
       <div class="p-4 mx-auto max-w-screen-md">
         <Chart
           type="line"
-          options={{
+          /*svgClass="w-full h-auto"*/
+            options={{
             devicePixelRatio: 1,
-            scales: { y: { beginAtZero: true } },
+            scales: { y: { beginAtZero: false } },
           }}
           data={{
-            labels: ["1", "2", "3"],
+            labels: data.map((_, index) => ""),
             datasets: [
               {
-                label: "Sessions",
+                label: "Stock Price over time",
                 data: data,
                 borderColor: ChartColors.Red,
                 backgroundColor: transparentize(ChartColors.Red, 0.5),
