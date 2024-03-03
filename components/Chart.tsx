@@ -2,13 +2,15 @@ import { Head } from "$fresh/runtime.ts";
 import { Chart } from "https://deno.land/x/fresh_charts@0.3.1/mod.ts";
 import { ChartColors, transparentize } from "https://deno.land/x/fresh_charts@0.3.1/utils.ts";
 import { StockPriceQuery } from "../utils/query-stock.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 
-export default function ChartComponent() {
-
-  //const response =  StockPriceQuery({ticker: "AAPL", from: new Date("2024-01-01") , to : new Date("2024-03-2") , interval: "day"});
-
+export function ChartComponent(data: number[]) {
+  console.log(data);
+  
   return (
-    <>
+    <div>
+      <h1>Title</h1>
+
       <Head>
         <title>Example Chart</title>
       </Head>
@@ -24,7 +26,7 @@ export default function ChartComponent() {
             datasets: [
               {
                 label: "Sessions",
-                data: [123, 234, 234],
+                data: data,
                 borderColor: ChartColors.Red,
                 backgroundColor: transparentize(ChartColors.Red, 0.5),
                 borderWidth: 1,
@@ -33,7 +35,7 @@ export default function ChartComponent() {
             ],
           }}
         />
-      </div>
-    </>
+        </div>
+    </div>
   );
 }
