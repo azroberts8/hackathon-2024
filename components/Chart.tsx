@@ -2,7 +2,6 @@ import { Head } from "$fresh/runtime.ts";
 import { Chart } from "https://deno.land/x/fresh_charts@0.3.1/mod.ts";
 import { ChartColors, transparentize } from "https://deno.land/x/fresh_charts@0.3.1/utils.ts";
 import { StockPriceQuery } from "../utils/query-stock.ts";
-import { AwaitExpression } from "https://deno.land/x/ts_morph@17.0.1/ts_morph.js";
 
 export default function ChartComponent() {
 
