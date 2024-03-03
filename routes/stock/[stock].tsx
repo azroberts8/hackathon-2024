@@ -7,8 +7,10 @@ import RecommendedStocks from "../../components/RecommendedStocks.tsx";
 
 export const handler: Handlers<number[]> = {
   async GET(_req, ctx) {
-    console.log("TEST");
-    const response = StockPriceQuery({ticker: "AAPL"});
+    const path = _req.url.split('/');
+    const ticker = path[path.length - 1];
+    //console.log(ticker);
+    const response = StockPriceQuery({ticker: ticker});
     const data = await response;
     return ctx.render(data);
   },
