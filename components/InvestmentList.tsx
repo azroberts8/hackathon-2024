@@ -10,9 +10,12 @@ export interface InvestmentListInterface {
 export default function InvestmentList({ title, companies }: InvestmentListInterface) {
     return (
         <div class="">
-            { companies.map(company => (
-                <ListItem ticker={company.ticker} name={company.name} price={company.price} sharesCount={company.sharesCount} />
-            )) }
+            <div class="text-2xl font-bold">{ title }</div>
+            <div class="">
+                { companies.map(company => (
+                    <ListItem ticker={company.ticker} name={company.name} price={company.price} sharesCount={company.sharesCount} />
+                )) }
+            </div>
         </div>
     );
 }
