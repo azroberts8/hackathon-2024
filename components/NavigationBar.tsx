@@ -2,7 +2,6 @@ import { JSX } from "preact";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { Search } from "./Search.tsx";
 
-
 const NavigationBar = () => {
   return(
     <div class="py-2 px-2 bg-[#86efac]">
