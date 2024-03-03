@@ -5,6 +5,8 @@ import { StockPriceQuery } from "../utils/query-stock.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { FULL } from "$std/semver/_shared.ts";
 
+
+
 export function ChartComponent(data: number[]) {
   
   return (
