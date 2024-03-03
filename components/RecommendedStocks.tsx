@@ -115,7 +115,6 @@ export default function RecommendedStockElement(ticker: string, currentPrice: nu
       <div class="border-sky-500">
          {ticker}
          {currentPrice}
-         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
          </div>
    );
 }
