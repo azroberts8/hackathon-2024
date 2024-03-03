@@ -1,6 +1,6 @@
 import { PageProps } from "$fresh/server.ts";
 import StockBio from "../../components/StockBio.tsx";
-import NavigationBar from "../../components/Nav.tsx";
+import NavigationBar from "../../components/NavigationBar.tsx";
 import ChartComponent from "../../components/Chart.tsx";
 import RecommendedStocks from "../../components/RecommendedStocks.tsx";
 
