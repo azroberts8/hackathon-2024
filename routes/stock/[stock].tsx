@@ -41,20 +41,6 @@ export const handler: Handlers<{ prices: Array<number>; deepQuery: DeepStockResp
     // const data = await response;
     return ctx.render(stockData);
   },
-  async POST(req, ctx) {
-    const form = await req.formData();
-    const email = form.get("text")?.toString();
-    console.log("AHHHHHHHHHHH");
-    // Add email to list.
-
-    // Redirect user to thank you page.
-    const headers = new Headers();
-    headers.set("location", "/thanks-for-subscribing");
-    return new Response(null, {
-      status: 303, // See Other
-      headers,
-    });
-  }
 
 };
 

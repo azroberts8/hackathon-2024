@@ -1,3 +1,11 @@
+import { stringify } from "$std/dotenv/mod.ts";
+import { JsonValue } from "$std/jsonc/parse.ts";
+
+interface exampleDataResult{
+  k: string,
+  v: number
+}
+
 interface StockQueryParams {
   ticker: string;
   from?: Date;
@@ -37,6 +45,56 @@ const StockPriceQuery = async ({ ticker, from = new Date("2024-02-02"), to = new
   }).then(res => res.json())
   return polyResponse.results.map((x: { c: number }) => x.c);
 }
+
+
+export async function StockPriceNestedQuery(){
+  const examplePerson = await fetch(`https://hackathon-2024-ea318-default-rtdb.firebaseio.com/.json`).then(res => res.json());
+  const res = examplePerson.Users["John Smith"].Owned_Stock;
+  let holder : number[][] = [];
+  for (const [key, value] of Object.entries(res)) {
+    //console.log(`${key}: ${value}`);
+    const currentStockValuesFromLastMonth = StockPriceQuery( { ticker: key } );
+    const ValuesTimesShare = (await currentStockValuesFromLastMonth).map((c: number) => c * Number(value));
+    //console.log(ValuesTimesShare);
+    holder = [...holder, ValuesTimesShare];
+  }
+  console.log(holder);
+  const ret = sumColumns(holder)
+  ret.forEach((i: number) => console.log(i));
+  return ret;
+}
+
+export async function GetExampleStockData(){
+  const examplePerson = await fetch(`https://hackathon-2024-ea318-default-rtdb.firebaseio.com/.json`).then(res => res.json());
+  const res = examplePerson.Users["John Smith"].Owned_Stock;
+  console.log(res);
+  return res;
+}
+
+
+function sumColumns(matrix: number[][]): number[] {
+  // Check if the matrix is empty
+  if (matrix.length === 0 || matrix[0].length === 0) {
+    throw new Error("Matrix is empty");
+  }
+
+  const numRows = matrix.length;
+  const numCols = matrix[0].length;
+
+  // Initialize an array to store the column sums
+  const columnSums: number[] = Array(numCols).fill(0);
+
+  // Iterate through columns and rows of the matrix
+  for (let j = 0; j < numCols; j++) {
+    for (let i = 0; i < numRows; i++) {
+      // Add the current element to the corresponding column sum
+      columnSums[j] += matrix[i][j];
+    }
+  }
+
+  return columnSums;
+}
+
 
 const StockBasicQuery = async ({ ticker }: StockQueryParams): Promise<BasicStockResponse> => {
   const financialResponse = await fetch(`https://financialmodelingprep.com/api/v3/profile/${ ticker }?apikey=${ FINANCIAL_MODELING_API_KEY }`)
