@@ -23,21 +23,5 @@ const NavigationBar = () => {
       </div>
     </div>
   );
-
-
-// return (<div class="py-2 px-2 bg-[#86efac] " >
-//       <div class="max-w-screen-md flex flex-row">
-//         <a href="/">
-//           <h1 class="text-4xl font-bold font-mono inline-block align-middle">quants_made_simple</h1>
-//         </a>
-//         <div class="float-end">
-//           <Search />
-//         </div>
-//         <a href="/profile">
-//           <h1 class="float-end text-2xl font-bold font-mono inline-block align-middle">my_profile</h1>
-//         </a>
-//       </div>
-//     </div>);
-
 }
 export default NavigationBar;
