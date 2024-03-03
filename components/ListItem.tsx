@@ -5,7 +5,7 @@ import { Button } from "../components/Button.tsx"
 export interface ListItemInterface {
     ticker: string;
     name: string;
-    price: number;
+    price?: number;
     sharesCount?: number;
 }
 
