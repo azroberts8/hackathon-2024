@@ -46,22 +46,31 @@ const StockPriceQuery = async ({ ticker, from = new Date("2024-02-02"), to = new
   return polyResponse.results.map((x: { c: number }) => x.c);
 }
 
+
 export async function StockPriceNestedQuery(){
   const examplePerson = await fetch(`https://hackathon-2024-ea318-default-rtdb.firebaseio.com/.json`).then(res => res.json());
   const res = examplePerson.Users["John Smith"].Owned_Stock;
   let holder : number[][] = [];
   for (const [key, value] of Object.entries(res)) {
-    console.log(`${key}: ${value}`);
+    //console.log(`${key}: ${value}`);
     const currentStockValuesFromLastMonth = StockPriceQuery( { ticker: key } );
     const ValuesTimesShare = (await currentStockValuesFromLastMonth).map((c: number) => c * Number(value));
-    console.log(ValuesTimesShare);
+    //console.log(ValuesTimesShare);
     holder = [...holder, ValuesTimesShare];
   }
-
-  
-  console.log(res);
-  return sumColumns(holder);
+  console.log(holder);
+  const ret = sumColumns(holder)
+  ret.forEach((i: number) => console.log(i));
+  return ret;
 }
+
+export async function GetExampleStockData(){
+  const examplePerson = await fetch(`https://hackathon-2024-ea318-default-rtdb.firebaseio.com/.json`).then(res => res.json());
+  const res = examplePerson.Users["John Smith"].Owned_Stock;
+  console.log(res);
+  return res;
+}
+
 
 function sumColumns(matrix: number[][]): number[] {
   // Check if the matrix is empty

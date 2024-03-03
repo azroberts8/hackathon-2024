@@ -6,7 +6,6 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { FULL } from "$std/semver/_shared.ts";
 
 export function ChartComponent(data: number[]) {
-  console.log(data);
   
   return (
     <div>
@@ -25,7 +24,7 @@ export function ChartComponent(data: number[]) {
             labels: data.map((_, index) => ""),
             datasets: [
               {
-                label: "Stock Price over time",
+                label: "Stock Price from 02-02-2024 to 03-03-2024 ",
                 data: data,
                 borderColor: ChartColors.Red,
                 backgroundColor: transparentize(ChartColors.Red, 0.5),
