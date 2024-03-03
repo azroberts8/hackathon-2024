@@ -17,7 +17,7 @@ interface BasicStockResponse {
   image: string;
 }
 
-interface DeepStockResponse extends BasicStockResponse {
+export interface DeepStockResponse extends BasicStockResponse {
   revenuePerShare: number;
   peRatio: number;
   priceToSalesRatio: number;

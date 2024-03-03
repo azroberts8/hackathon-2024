@@ -13,7 +13,7 @@ export function Search() {
         </svg>
         <button id="searchButton" class="bg-indigo-600 text-white p-2 text-lg font-semibold py-4 rounded-r-md">Go</button>
       </div>
-      <script src="jank-script.js"></script>
+      <script src="/jank-script.js"></script>
     </div>
   );
 }
