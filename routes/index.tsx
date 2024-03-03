@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div>
       <NavigationBar />
-      <InvestmentList companies={investments} />
+      <InvestmentList title="Invested Companies" companies={investments} />
     </div>
   );
 }
