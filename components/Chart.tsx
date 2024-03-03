@@ -2,29 +2,31 @@ import { Head } from "$fresh/runtime.ts";
 import { Chart } from "https://deno.land/x/fresh_charts@0.3.1/mod.ts";
 import { ChartColors, transparentize } from "https://deno.land/x/fresh_charts@0.3.1/utils.ts";
 import { StockPriceQuery } from "../utils/query-stock.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
+import { FULL } from "$std/semver/_shared.ts";
 
-export default function ChartComponent() {
-
-  //const response =  StockPriceQuery({ticker: "AAPL", from: new Date("2024-01-01") , to : new Date("2024-03-2") , interval: "day"});
-
+export function ChartComponent(data: number[]) {
+  console.log(data);
+  
   return (
-    <>
+    <div>
       <Head>
         <title>Example Chart</title>
       </Head>
       <div class="p-4 mx-auto max-w-screen-md">
         <Chart
           type="line"
-          options={{
+          /*svgClass="w-full h-auto"*/
+            options={{
             devicePixelRatio: 1,
-            scales: { y: { beginAtZero: true } },
+            scales: { y: { beginAtZero: false } },
           }}
           data={{
-            labels: ["1", "2", "3"],
+            labels: data.map((_, index) => ""),
             datasets: [
               {
-                label: "Sessions",
-                data: [123, 234, 234],
+                label: "Stock Price over time",
+                data: data,
                 borderColor: ChartColors.Red,
                 backgroundColor: transparentize(ChartColors.Red, 0.5),
                 borderWidth: 1,
@@ -33,7 +35,7 @@ export default function ChartComponent() {
             ],
           }}
         />
-      </div>
-    </>
+        </div>
+    </div>
   );
 }
