@@ -36,13 +36,10 @@ export default function Stock(props: PageProps) {
     <div >
       <NavigationBar/>
       <div class=" mx-auto flex flex-col ">
-        {console.log("PAGEPROPS -> " + props)}
+        {/* {console.log("PAGEPROPS -> " + props)} */}
         { StockBio(props.params.stock, "Stock Name", "Here is an example Description")}
       </div>
       { ChartComponent(props.data)}
-      <div class="border-8">      
-        {RecommendedStocks("APPL", 900)}
-      </div>
     </div>
   ); 
 }
