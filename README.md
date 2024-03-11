@@ -9,6 +9,12 @@ APIs to source current stock data and OpenAI's ChatGPT API to summarize and
 explain the data in a way that is digestable and educational for novice investors.
 For more information on this project, see our [Devpost page](https://devpost.com/software/quants-made-simple)
 
+An active deployment is currently available at https://laughableliquidity.co
+however the ChatGPT API token will soon be disabled. Once this API key is
+disabled the deployment cease to function properly. If you are experiencing a
+problem with the deployment this is likely the case. Follow the directions below
+for setting up a local instance for testing.
+
 ## Developed By
 
 - [Andrew Roberts](https://github.com/azroberts8) (andrewzr@udel.edu)
@@ -43,3 +49,12 @@ Start the project by running
 ```sh
 deno task start
 ```
+
+## Troubleshooting
+
+If you are experiencing issues loading the pages, the most likely problem
+is improperly set environment variables. Double check that your API keys
+are valid and that they are properly set on your system.
+
+If you are facing issues getting this project run, note that we used Deno v1.41
+and your issue may be resolved by using this version.
